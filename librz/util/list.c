@@ -539,21 +539,32 @@ RZ_API RZ_BORROW RzListIter *rz_list_add_sorted(RZ_NONNULL RzList *list, RZ_NONN
  *
  **/
 RZ_API ut32 rz_list_set_n(RZ_NONNULL RzList *list, ut32 n, RZ_NONNULL void *data) {
-	RzListIter *it;
-	ut32 i;
-
 	rz_return_val_if_fail(list, false);
-	for (it = list->head, i = 0; it; it = it->next, i++) {
-		if (i == n) {
-			if (list->free) {
-				list->free(it->val);
-			}
-			it->val = data;
-			list->sorted = false;
-			return true;
+	if (n >= list->length) {
+		return false;
+	}
+
+	RzListIter *it;
+	if (n <= list->length / 2) {
+		it = list->head;
+		for (ut32 i = 0; i < n; i++) {
+			it = it->next;
+		}
+	} else {
+		it = list->tail;
+		for (ut32 i = list->length - 1; i > n; i--) {
+			it = it->prev;
 		}
 	}
-	return false;
+	if (!it) {
+		return false;
+	}
+	if (list->free) {
+		list->free(it->val);
+	}
+	it->val = data;
+	list->sorted = false;
+	return true;
 }
 
 /**
@@ -561,20 +572,24 @@ RZ_API ut32 rz_list_set_n(RZ_NONNULL RzList *list, ut32 n, RZ_NONNULL void *data
  *
  **/
 RZ_API RZ_BORROW void *rz_list_get_n(RZ_NONNULL const RzList *list, ut32 n) {
-	RzListIter *it;
-	ut32 i;
-
 	rz_return_val_if_fail(list, NULL);
 	if (n >= list->length) {
 		return NULL;
 	}
 
-	for (it = list->head, i = 0; it && it->val; it = it->next, i++) {
-		if (i == n) {
-			return it->val;
+	RzListIter *it;
+	if (n <= list->length / 2) {
+		it = list->head;
+		for (ut32 i = 0; i < n; i++) {
+			it = it->next;
+		}
+	} else {
+		it = list->tail;
+		for (ut32 i = list->length - 1; i > n; i--) {
+			it = it->prev;
 		}
 	}
-	return NULL;
+	return it ? it->val : NULL;
 }
 
 /**
