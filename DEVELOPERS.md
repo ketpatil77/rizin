@@ -2,6 +2,19 @@
 
 This file is aimed at developers who want to work on the Rizin code base.
 
+## Suggested codebase tour
+
+If you are new to the project, this reading order gives a manageable overview before diving into specific issues:
+
+1. Start with [README.md](README.md) for the supported targets, tools, and build entry points.
+2. Read [CONTRIBUTING.md](CONTRIBUTING.md) for branch, testing, and review expectations.
+3. Skim [BUILDING.md](BUILDING.md) so you understand the Meson-based build layout and optional components.
+4. Explore `librz/` next. It contains the reusable libraries that most frontends and tools build on top of.
+5. Look at `binrz/` after that to see how user-facing tools assemble those libraries into concrete commands.
+6. Keep `test/README.md` nearby while changing code, because new contributors are expected to back changes with tests and CI-visible validation.
+
+For a first contribution, documentation, tests, and narrowly scoped fixes in one library are usually easier than cross-cutting refactors across `librz/` and `binrz/`.
+
 ## Documentation
 
 There is support for Doxygen document generation in this repo.
