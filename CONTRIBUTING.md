@@ -26,15 +26,10 @@ try to keep the codebase consistent and clean.
 * Submit the Pull Request(PR) on Github.
 * When relevant, write a test in [test/](test).
 
-If you are new to the project, this reading order gives a manageable overview before diving into specific issues:
-
-1. Read [CONTRIBUTING.md](CONTRIBUTING.md) for branch, testing, and review expectations.
-2. Skim [BUILDING.md](BUILDING.md) so you understand the Meson-based build layout and optional components.
-3. Explore `librz/` next. It contains the reusable libraries that most frontends and tools build on top of.
-4. Look at `binrz/` after that to see how user-facing tools assemble those libraries into concrete commands.
-5. Keep [test/README.md](test/README.md) nearby while changing code, because new contributors are expected to back changes with tests and CI-visible validation.
-
-For a first contribution, documentation, tests, and narrowly scoped fixes in one library are usually easier than cross-cutting refactors across `librz/` and `binrz/`.
+If you are new to the project, [BUILDING.md](BUILDING.md),
+[DEVELOPERS.md](DEVELOPERS.md), and [test/README.md](test/README.md)
+provide the quickest overview of the build layout, codebase conventions,
+and testing expectations.
 
 > [!IMPORTANT]
 > AI tools must not be used to fix issues labelled `good first issue`.
