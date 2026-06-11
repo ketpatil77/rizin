@@ -142,7 +142,6 @@ and a drain on limited team resources.
 # Additional resources
 
  * [DEVELOPERS.md][]
-[DEVELOPERS.md]: https://github.com/rizinorg/rizin/blob/dev/DEVELOPERS.md
 
 If you need more confidence in your git skills, check out this quick guide:
 <https://learnxinyminutes.com/docs/git/>
